@@ -7,24 +7,31 @@ class Route {
         $this->routes[] = [
             'url' => $url,
             'controller' => $controller,
-            'method' => $method
+            'method' => $method,
+            'access' => NULL
         ];
+
+        return $this;
     }
 
     public function post($url, $controller){
-        $this->setter($url, $controller, 'POST');
+        return $this->setter($url, $controller, 'POST');
     }
 
     public function get($url, $controller){
-        $this->setter($url, $controller, 'GET');
+        return $this->setter($url, $controller, 'GET');
     }
 
     public function put($url, $controller){
-        $this->setter($url, $controller, 'PUT');
+        return $this->setter($url, $controller, 'PUT');
     }
 
     public function delete($url, $controller){
-        $this->setter($url, $controller, "DELETE");
+        return $this->setter($url, $controller, "DELETE");
+    }
+
+    public function access($stat) {
+        $this->routes[array_key_last($this->routes)]['access'] = $stat;
     }
 
     public function route($url) {
@@ -32,6 +39,15 @@ class Route {
  
         foreach($this->routes as $route) {
             if ($route['url'] === $url && $route['method'] == $method){
+
+                if ($route['access'] === 'Auth') {
+                    (new Auth())->handler();
+                }
+
+
+                if ($route['access'] === 'guest') {
+                    (new Guest())->handler();
+                }
                 require $route['controller'];
             }
         }
