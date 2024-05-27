@@ -5,49 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
-    <link rel="stylesheet" href="static/css/homesty.css">
+    <link rel="stylesheet" href="views/static/css/homesty.css">
 </head>
 
 <body>
-    <?php require "partials/header.php";
-    $books = [
-        [
-            "poster" => "front.png",
-            "title" => "Advanced programming",
-            "author" => "Daniel Ababu",
-            "amount" => 3
-        ],
-        [
-            "poster" => "front.png",
-            "title" => "Advanced programming",
-            "author" => "Daniel Ababu",
-            "amount" => 3
-        ],
-        [
-            "poster" => "front.png",
-            "title" => "Advanced programming",
-            "author" => "Daniel Ababu",
-            "amount" => 3
-        ],
-        [
-            "poster" => "front.png",
-            "title" => "Advanced programming",
-            "author" => "Daniel Ababu",
-            "amount" => 3
-        ],
-        [
-            "poster" => "front.png",
-            "title" => "Advanced programming",
-            "author" => "Daniel Ababu",
-            "amount" => 3
-        ]
-    ]
-    ?>
+    <?php require "partials/header.php";?>
 
     <section>
         <div id="search">
             <h2>Search for Books</h2>
-            <form action="searchview.php" method="get">
+            <form action="/" method="get">
                 <input type="text" name="query" id="sinput" placeholder="Search by title, author, or ISBN">
                 <button type="submit">Search</button>
             </form>

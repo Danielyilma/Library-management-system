@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
-    <link rel="stylesheet" href="static/css/addbook.css">
+    <link rel="stylesheet" href="views/static/css/addbook.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 
     <section id="addbook">
         <h2>Add Book</h2>
-        <form action="" method="get">
+        <form action="/book" method="post" enctype="multipart/form-data">
             <label for="btitle"> Title</label>
             <input type="text" name="btitle" id="btitle" placeholder="">
             <label for="bauthor"> Author</label>

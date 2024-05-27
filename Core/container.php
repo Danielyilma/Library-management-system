@@ -1,19 +1,21 @@
 <?php
 
-class Container {
-    protected $container = [];
+namespace Core\Container;
 
-    public function bind($key, $function){
-        $this->container[$key] = $function;
+class Container {
+    protected static $container = [];
+
+    public static function bind($key, $function){
+        self::$container[$key] = $function;
     }
 
-    public function resolver($key){
-        if (!array_key_exists($key, $this->container)){
+    public static function resolver($key){
+        if (!array_key_exists($key, self::$container)){
             throw Exception();
         }
 
-        $function = $this->container[$key];
+        $function = self::$container[$key];
 
-        call_user_func($function);
+        return call_user_func($function);
     }
 }

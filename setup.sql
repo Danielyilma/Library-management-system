@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS book (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(64),
     author varchar(64),
-    poster VARCHAR(64)
+    poster VARCHAR(64),
+    amount INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS borrow (

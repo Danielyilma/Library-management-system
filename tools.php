@@ -27,3 +27,9 @@ function logout(){
         $params["secure"], $params["httponly"]
     );
 }
+
+function upload($file, $path){
+    $filename = $path . uniqid() . $file['name'];
+    move_uploaded_file($file['tmp_name'], $filename);
+    return $filename;
+}

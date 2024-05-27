@@ -24,5 +24,9 @@ class Database {
         return $this->stmt->fetch();
     }
 
+    public function fetchall(){
+        return $this->stmt->fetchall();
+    }
+
 
 }

@@ -5,8 +5,8 @@
     <div>
         <nav>
             <ul>
-                <li><a href="#search">Search for Books</a></li>
                 <?php if ($_SESSION['user'] ?? false) : ?>
+                    <li><a href="/book">Add book</a></li>
                     <li><a href="#borrow">Borrow Books</a></li>
                     <li><a href="#return">Return Books</a></li>
                     <li><a href="/logout">Logout</a></li>
