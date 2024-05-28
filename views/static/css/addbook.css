@@ -8,11 +8,14 @@
 body {
     height: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;    
+	background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5)),url("bck.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #12bfdd;
     color: white;
     text-align: center;
     padding: 0.5em 1.5em;
@@ -41,7 +44,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #409344;
+    background-color: #11a7c1;
 }
 
 #addbook{
@@ -56,7 +59,7 @@ nav ul li a:hover {
 section {
     margin: 1em;
     padding: 1em;
-    background-color: white;
+    background-color: rgba(198, 246, 255, 0.7);
     border-radius: 5px;
 }
 
@@ -85,19 +88,19 @@ form button {
     padding: 0.5em 1em;
     border: none;
     border-radius: 4px;
-    background-color: #4CAF50;
+    background-color: #12bfdd;
     color: white;
     cursor: pointer;
 }
 
 form button:hover {
-    background-color: #36883a;
+    background-color: #10a7c2;
 }
 
 footer {
     text-align: center;
     padding: 1em;
-    background-color: #6de973;
+    background-color: #12bfdd;
     color: rgb(42, 42, 42);
 
 }

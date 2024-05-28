@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php require "partials/header.php";?>
+    <?php require "partials/header.php"; ?>
 
     <section>
         <div id="search">
