@@ -24,9 +24,12 @@ CREATE TABLE IF NOT EXISTS book (
 CREATE TABLE IF NOT EXISTS borrow (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     borrow_date DATETIME NOT NULL,
+    return_date DATE,
     user_id INTEGER,
     book_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (book_id) REFERENCES book(id)
 );
 
+-- ALTER TABLE borrow 
+-- ADD COLUMN return_date DATE;

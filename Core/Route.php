@@ -40,7 +40,7 @@ class Route {
         foreach($this->routes as $route) {
             if ($route['url'] === $url && $route['method'] == $method){
 
-                if ($route['access'] === 'Auth') {
+                if ($route['access'] === 'auth') {
                     (new Auth())->handler();
                 }
 

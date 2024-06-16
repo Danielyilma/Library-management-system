@@ -14,5 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $book = new Book($title, $author, $poster, $amount);
 
     $book->store($connection);
+    Header("Location: /");
 }
 require 'views/addbook.php';

@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-color: #12bfdd;
+    background-color: #065a6f;
     color: white;
     text-align: center;
     padding: 0.5em 1.5em;
@@ -44,7 +44,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #11a7c1;
+    background-color: #087e9b;
 }
 
 #addbook{
@@ -59,7 +59,7 @@ nav ul li a:hover {
 section {
     margin: 1em;
     padding: 1em;
-    background-color: rgba(198, 246, 255, 0.7);
+    background-color: rgba(236, 252, 255, 0.7);
     border-radius: 5px;
 }
 
@@ -94,13 +94,13 @@ form button {
 }
 
 form button:hover {
-    background-color: #10a7c2;
+    background-color: #06748f;
 }
 
 footer {
     text-align: center;
     padding: 1em;
-    background-color: #12bfdd;
+    background-color: #065a6f;
     color: rgb(42, 42, 42);
 
 }

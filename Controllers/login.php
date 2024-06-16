@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $query = 'select * from users where email = :email';
     $user = $connection->query($query, ['email' => $email])->fetch();
 
-    if (password_verify($password, $user['password'])) {
+    if ($user and password_verify($password, $user['password'])) {
         login($user);
         header("Location: /");
         exit();

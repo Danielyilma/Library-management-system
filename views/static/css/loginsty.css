@@ -7,7 +7,7 @@
 }
 :root{
 	--bg-color: linear-gradient(88deg, rgba(211, 181, 255) 0%, rgba(188, 223, 255) 20%, rgba(214, 243, 255) 50%, rgb(214, 243, 255) 85%, rgb(188, 223, 255) 90%, rgb(211, 181, 255) 100%);
-	--cblue: #22489e;
+	--cblue: #065a6f;
 }
 
 body {
@@ -66,7 +66,7 @@ body {
 	height: 100%;
 	border-radius: 30px;
 	transition: 0.5s;
-	background-color:#22489e;
+	background-color:#065a6f;
 }
 
 .social-icons

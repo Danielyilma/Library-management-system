@@ -16,6 +16,10 @@
             <h2>Search for Books</h2>
             <form action="/" method="get">
                 <input type="text" name="query" id="sinput" placeholder="Search by title, author, or ISBN">
+                <!-- <select name="filter" id="sort">
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                </select> -->
                 <button type="submit">Search</button>
             </form>
         </div>
