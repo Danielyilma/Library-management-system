@@ -31,5 +31,12 @@ CREATE TABLE IF NOT EXISTS borrow (
     FOREIGN KEY (book_id) REFERENCES book(id)
 );
 
+CREATE TABLE password_resets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expires INT NOT NULL
+);
+
 -- ALTER TABLE borrow 
 -- ADD COLUMN return_date DATE;

@@ -57,8 +57,10 @@ class Mail {
 
     public function send() {
         try {
+            ob_start(); 
             $this->mail->send();
             echo 'Message has been sent';
+            ob_end_clean();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
         }
@@ -81,6 +83,11 @@ class Mail {
         </body>
         </html>
         ";
+    }
+
+    public function set_email($subject, $body) {
+        $this->mail->Subject = $subject;
+        $this->mail->Body = $body;
     }
 }
 

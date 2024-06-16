@@ -7,16 +7,6 @@ $config = require 'Core/config.php';
 $conn = new Database($config);
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    
-    if (isset($_POST["_method"])) {
-        $id = $_POST['id'];
-        Book::return_book($conn, $id);
-
-        // require "models/borrow.php";
-        Header("Location: /borrow");
-        exit();
-    }
-
     $user_email = $_POST['email'];
     $book_title = $_POST['book_title'];
     $book_author = $_POST['book_author'];
@@ -34,10 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $message["borrow"] = "borrowing successfull";
     }
 
-    dprint($error["borrow"] ?? $message["borrow"]);
-} else {
-    // $books = Book::get_borrows($conn);
-    // dprint($books);
+    // dprint($error["borrow"] ?? $message["borrow"]);
 }
 
-require "models/borrow.php";
+require "views/borrow_book.php";

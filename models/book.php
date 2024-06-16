@@ -53,6 +53,10 @@ class Book {
     }
 
     public static function borrow($conn, $title, $author, $user_email, $return_date){
+        if (strtotime($return_date) < strtotime(Date("Y-m-d"))) {
+            return "return date must be in future";
+        }
+
         $query = "SELECT * FROM book WHERE title =:title or author=:author";
 
         $stmt = $conn->query($query, [
@@ -90,7 +94,7 @@ class Book {
         require "mail.php";
         $mail = new Mail();
         $mail->sender("daniel.yilma@aastustudent.edu.et", "12345678");
-        $mail->reciever("deathland2352@gmail.com");
+        $mail->reciever($user_email);
 
         $mail->borrow_mail($user, [
             "title" => $title,
@@ -103,8 +107,17 @@ class Book {
 
     public static function get_borrows($conn){
         $query = 'SELECT * FROM borrow ORDER BY borrow_date ASC';
+        $query2 = "SELECT * FROM users WHERE id=:id";
+        $query3 = "SELECT * FROM book WHERE id=:id";
+    
         $stmt = $conn->query($query, []);
-        return $stmt->fetchall();
+        $borrows = $stmt->fetchall();
+
+        foreach ($borrows as &$borrow) {
+            $borrow['user'] = $conn->query($query2, ["id" => $borrow['user_id']])->fetch();
+            $borrow['book'] = $conn->query($query3, ["id" => $borrow['book_id']])->fetch();
+        }
+        return $borrows;
     }
 
     public static function return_book($conn, $id) {
@@ -126,7 +139,7 @@ class Book {
         require "mail.php";
         $mail = new Mail();
         $mail->sender("daniel.yilma@aastustudent.edu.et", "12345678");
-        $mail->reciever("deathland2352@gmail.com");
+        $mail->reciever($user['email']);
 
         $mail->return_mail($user, [
             "title" => $book['title'],
@@ -136,5 +149,26 @@ class Book {
         $mail->send();
 
         return $stmt;
+    }
+
+    public static function search_record($conn, $constraint) {
+        $query = "SELECT * FROM users WHERE full_name LIKE :full_name or email LIKE :email";
+        $query2 = "SELECT * FROM borrow WHERE user_id=:user_id";
+        $query3 = "SELECT * FROM book WHERE id=:id";
+        $constraint = '%' . $constraint . '%';
+        $user = $conn->query($query, [
+            'full_name' => $constraint,
+            "email" => $constraint
+        ])->fetch();
+        
+        $id = $user["id"];
+        $borrows = $conn->query($query2, ["user_id" => $id])->fetchall();
+
+
+        foreach ($borrows as &$borrow) {
+            $borrow['user'] = $user;
+            $borrow['book'] = $conn->query($query3, ["id" => $borrow['book_id']])->fetch();
+        }
+        return $borrows;
     }
 }
