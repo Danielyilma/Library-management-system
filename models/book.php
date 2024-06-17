@@ -6,22 +6,26 @@ class Book {
     public $author = NULL;
     public $poster = NULL;
     public $amount = NULL;
+    public $genre = NULL;
 
-    public function __construct($title = NULL, $author = NULL, $poster = NULL, $amount = NULL) {
+    public function __construct($title = NULL, $author = NULL, $poster = NULL, $amount = NULL, $genre = null) {
         $this->id = $id;
         $this->title = $title;
         $this->author = $author;
         $this->poster = $poster;
         $this->amount = $amount;
+        $this->genre = $genre;
     }
 
     public function store($conn){
-        $query = 'INSERT INTO book (title, author, poster, amount) value (:title, :author, :poster, :amount)';
+        $query = 'INSERT INTO book (title, author, poster, amount, available, genre) value (:title, :author, :poster, :amount, :available, :genre)';
         $conn->query($query, [
             'title' => $this->title,
             'author' => $this->author,
             'poster' => $this->poster,
-            'amount' => $this->amount
+            'amount' => $this->amount,
+            "available" => $this->amount,
+            "genre" => $this->genre
         ]); 
     }
 
@@ -70,6 +74,11 @@ class Book {
             return "book not found";
         }
 
+
+        if ($book['available'] < 1) {
+            return "book not available";
+        }
+
         $query2 = "SELECT * FROM users WHERE email =:email";
 
         $stmt = $conn->query($query2, ["email" => $user_email]);
@@ -90,6 +99,9 @@ class Book {
             "borrow_date" => $borrowDate,
             "return_date" => date($return_date)
         ]);
+
+        $book['available'] -= 1;
+        $conn->query("UPDATE book SET available=:available WHERE id=:id", ["available" => $book['available'], "id" => $book['id']]);
 
         require "mail.php";
         $mail = new Mail();
@@ -136,6 +148,9 @@ class Book {
         $query4 = 'DELETE FROM borrow WHERE id =:id';
         $stmt = $conn->query($query4, ["id" => $id]);
 
+        $book['available'] += 1;
+        $conn->query("UPDATE book SET available=:available WHERE id=:id", ["available" => $book['available'], "id" => $book['id']]);
+
         require "mail.php";
         $mail = new Mail();
         $mail->sender("daniel.yilma@aastustudent.edu.et", "12345678");
@@ -170,5 +185,13 @@ class Book {
             $borrow['book'] = $conn->query($query3, ["id" => $borrow['book_id']])->fetch();
         }
         return $borrows;
+    }
+
+    public static function overdue_borrows($conn) {
+        $query = "SELECT users.full_name, users.email, book.title, book.author, borrow.borrow_date, borrow.return_date FROM 
+        users join borrow on borrow.user_id = users.id join book on borrow.book_id = book.id WHERE borrow.return_date < CURDATE();
+        ";
+
+        return $conn->query($query, [])->fetchall();
     }
 }

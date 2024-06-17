@@ -17,6 +17,8 @@ $routes->get('/book', 'Controllers/book.php')->access('auth');
 $routes->get('/borrow', 'Controllers/borrow.php')->access('auth');
 $routes->get('/borrow_record', 'Controllers/borrow_records.php')->access('auth');
 $routes->get('/reset_password', 'Controllers/forgot_password.php')->access("guest");
+$routes->get('/download', "Controllers/download.php")->access('auth');
+$routes->get('/report', "Controllers/report.php")->access('auth');
 // $routes->get('/search', 'views/searchview.php');
 
 // routes for post method
@@ -26,6 +28,7 @@ $routes->post('/book', 'Controllers/book.php')->access('auth');
 $routes->post('/borrow', 'Controllers/borrow.php')->access('auth');
 $routes->post('/borrow_record', 'Controllers/borrow_records.php')->access('auth');
 $routes->post('/reset_password', 'Controllers/forgot_password.php')->access("guest");
+$routes->post('/download', "Controllers/download.php")->access('auth');
 
 // routes for put method
 

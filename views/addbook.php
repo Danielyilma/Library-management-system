@@ -18,6 +18,8 @@
             <input type="text" name="btitle" id="btitle" placeholder="">
             <label for="bauthor"> Author</label>
             <input type="text" name="bauthor" id="bauthor" placeholder="">
+            <label for="bamount"> Genre</label>
+            <input type="text" name="genre" id="bamount" placeholder="">
             <label for="bamount"> Amount</label>
             <input type="text" name="bamount" id="bamount" placeholder="">
             <label for="bpicture"> Picture</label>

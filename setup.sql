@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS book (
     title VARCHAR(64),
     author varchar(64),
     poster VARCHAR(64),
-    amount INTEGER
+    amount INTEGER,
+    available INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS borrow (
@@ -31,7 +32,7 @@ CREATE TABLE IF NOT EXISTS borrow (
     FOREIGN KEY (book_id) REFERENCES book(id)
 );
 
-CREATE TABLE password_resets (
+CREATE TABLE IF NOT EXISTS password_resets (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     token VARCHAR(255) NOT NULL,
@@ -40,3 +41,9 @@ CREATE TABLE password_resets (
 
 -- ALTER TABLE borrow 
 -- ADD COLUMN return_date DATE;
+
+-- ALTER TABLE book 
+-- ADD COLUMN available INTEGER;
+
+ALTER TABLE book 
+ADD COLUMN genre varchar(30);

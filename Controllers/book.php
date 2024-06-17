@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author = $_POST['bauthor'];
     $poster = upload($_FILES['bpicture'], 'views/static/images/');
     $amount = $_POST['bamount'];
+    $genre = $_POST['genre'];
 
-    $book = new Book($title, $author, $poster, $amount);
+    $book = new Book($title, $author, $poster, $amount, $genre);
 
     $book->store($connection);
     Header("Location: /");
